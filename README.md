@@ -4,7 +4,7 @@ A TODO app for demonstration.
 
 ## Getting Started
 
-to install your pc need to have 3.19.6 version of flutter. You need to have Android emulator (or equivalante for other platform) available and from the root of the project please run
+to install your pc need to have 3.19.6 version of flutter. You need to have Android emulator (or equivalent for other platform) available and from the root of the project please run
 
 ```
 flutter run
