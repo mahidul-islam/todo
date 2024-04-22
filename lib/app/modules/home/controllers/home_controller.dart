@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:todo/app/modules/home/model/todo_model.dart';
 import 'package:todo/app/modules/home/model/todo_models.dart';
+import 'package:todo/app/service/error/error_notification.dart';
 import 'package:todo/app/service/storage/storage_box.dart';
 import 'package:todo/app/shared_widget/button/bar_button.dart';
 import 'package:todo/app/shared_widget/text_field/general_text_field.dart';
@@ -66,12 +67,19 @@ class HomeController extends GetxController {
           ),
           BarButton.primary(
             onPressed: () {
+              if (titleController.text == '' ||
+                  descriptionController.text == '') {
+                ErrorNotification.to
+                    .show(error: 'Title and Description is required');
+                return;
+              }
               List<TodoModel>? todos = todoModels.value?.todos?.toList();
               todos ??= [];
               todos.add(
                 TodoModel(
                   title: titleController.text,
                   description: descriptionController.text,
+                  date: DateTime.now(),
                 ),
               );
               titleController.text = '';

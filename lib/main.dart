@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:todo/app/service/error/error_notification.dart';
 import 'package:todo/app/service/storage/storage_box.dart';
 import 'package:todo/app/service/modal/modal_util.dart';
 
@@ -24,6 +25,7 @@ void main() async {
 class InitialBinding extends Bindings {
   @override
   Future<void> dependencies() async {
+    Get.put(ErrorNotification());
     Get.put(StorageBox());
     Get.lazyPut(() => ModalUtil());
   }
