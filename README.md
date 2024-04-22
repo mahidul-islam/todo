@@ -1,16 +1,19 @@
-# todo
+# Todo app
 
-A new Flutter project.
+A TODO app for demonstration.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+to install your pc need to have 3.19.6 version of flutter. You need to have Android emulator (or equivalante for other platform) available and from the root of the project please run
 
-A few resources to get you started if this is your first Flutter project:
+```
+flutter run
+```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Tasks
+- All functionality working
+- Added persistant storage for todos
+- Added a sample animation for empty state.
+- Followed GetX pattern for code management.
+- Added Validation if title or description empty.
+- Added ripple effect on click action on Button.

@@ -39,9 +39,26 @@ class TodoWidget extends StatelessWidget {
                   : Colors.redAccent,
             ),
             padding: const EdgeInsets.all(16),
-            child: Text(
-              todoModel?.title ?? '',
-              style: const TextStyle(fontWeight: FontWeight.w600),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    todoModel?.title ?? '',
+                    style: const TextStyle(fontWeight: FontWeight.w600),
+                  ),
+                ),
+                IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () {
+                    controller.removeTodo(todoModel);
+                  },
+                  icon: const Icon(
+                    Icons.delete_outline,
+                    color: Colors.red,
+                    size: 16,
+                  ),
+                )
+              ],
             ),
           ),
           Container(

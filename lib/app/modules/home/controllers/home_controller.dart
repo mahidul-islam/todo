@@ -34,6 +34,14 @@ class HomeController extends GetxController {
     save();
   }
 
+  void removeTodo(TodoModel? todo) {
+    List<TodoModel>? todos = todoModels.value?.todos?.toList();
+    todos ??= [];
+    todos.remove(todo);
+    todoModels.value = todoModels.value?.copyWith(todos: todos);
+    save();
+  }
+
   void addTask() {
     ModalUtil.to.showbasicModal(contents: [
       const Text(
@@ -57,6 +65,7 @@ class HomeController extends GetxController {
         maxLength: 500,
         lineCount: 5,
         padding: EdgeInsets.zero,
+        contentPadding: const EdgeInsets.all(16),
       ),
       const SizedBox(
         height: 16,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:todo/app/modules/home/widgets/todo_widget.dart';
 
 import '../controllers/home_controller.dart';
@@ -25,6 +26,9 @@ class HomeView extends GetView<HomeController> {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
+              if ((controller.todoModels.value?.todos?.length ?? 0) == 0)
+                Lottie.network(
+                    'https://lottie.host/c5d54262-1288-40b3-ac47-10f2de898a33/JPc0Tq8nSU.json'),
               for (int i = 0;
                   i < (controller.todoModels.value?.todos?.length ?? 0);
                   i++)
