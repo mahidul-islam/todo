@@ -26,6 +26,14 @@ class HomeController extends GetxController {
     StorageBox.to.setTodos(todos: todoModels.value);
   }
 
+  void updateTodo(TodoModel? todo, int index) {
+    List<TodoModel>? todos = todoModels.value?.todos?.toList();
+    todos ??= [];
+    todos[index] = todos[index].copyWith(completed: !todos[index].completed);
+    todoModels.value = todoModels.value?.copyWith(todos: todos);
+    save();
+  }
+
   void addTask() {
     ModalUtil.to.showbasicModal(contents: [
       const Text(

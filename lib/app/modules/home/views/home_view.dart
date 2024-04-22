@@ -31,7 +31,11 @@ class HomeView extends GetView<HomeController> {
                 TodoWidget(
                   controller: controller,
                   todoModel: controller.todoModels.value?.todos?[i],
+                  index: i,
                 ),
+              const SizedBox(
+                height: 100,
+              )
             ],
           ),
         ),

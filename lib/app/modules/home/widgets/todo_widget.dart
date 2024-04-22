@@ -7,14 +7,19 @@ class TodoWidget extends StatelessWidget {
     super.key,
     required this.controller,
     required this.todoModel,
+    required this.index,
   });
 
   final HomeController controller;
   final TodoModel? todoModel;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return MaterialButton(
+      onPressed: () {
+        controller.updateTodo(todoModel, index);
+      },
       padding: const EdgeInsets.all(16),
       child: Column(
         children: [
@@ -29,7 +34,9 @@ class TodoWidget extends StatelessWidget {
                 topLeft: Radius.circular(8),
                 topRight: Radius.circular(8),
               ),
-              color: Colors.greenAccent,
+              color: (todoModel?.completed ?? false)
+                  ? Colors.greenAccent
+                  : Colors.redAccent,
             ),
             padding: const EdgeInsets.all(16),
             child: Text(
