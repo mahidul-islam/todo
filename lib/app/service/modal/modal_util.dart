@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ModalUtil extends GetxService {
-  static ModalUtil get to => Get.find();
+  static ModalUtil get to => Get.find<ModalUtil>();
 
   Future<void> showbasicModal({
     required final List<Widget> contents,

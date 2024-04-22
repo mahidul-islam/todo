@@ -8,6 +8,7 @@ part 'todo_models.g.dart';
 class TodoModels with _$TodoModels {
   factory TodoModels({
     List<TodoModel>? todos,
+    // @Default(true) bool update,
   }) = _TodoModels;
 
   factory TodoModels.fromJson(final Map<String, dynamic> json) =>

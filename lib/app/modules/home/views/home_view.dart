@@ -9,34 +9,33 @@ class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.addTask();
-        },
-        child: const Icon(Icons.add),
-      ),
-      appBar: AppBar(
-        title: const Text('TODO App'),
-        centerTitle: true,
-        backgroundColor: Colors.amberAccent,
-      ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-            TodoWidget(),
-          ],
+    return Obx(() {
+      return Scaffold(
+        floatingActionButton: FloatingActionButton(
+          onPressed: () {
+            controller.addTask();
+          },
+          child: const Icon(Icons.add),
         ),
-      ),
-    );
+        appBar: AppBar(
+          title: const Text('TODO App'),
+          centerTitle: true,
+          backgroundColor: Colors.amberAccent,
+        ),
+        body: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              for (int i = 0;
+                  i < (controller.todoModels.value?.todos?.length ?? 0);
+                  i++)
+                TodoWidget(
+                  controller: controller,
+                  todoModel: controller.todoModels.value?.todos?[i],
+                ),
+            ],
+          ),
+        ),
+      );
+    });
   }
 }

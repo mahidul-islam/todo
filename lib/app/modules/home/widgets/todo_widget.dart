@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:todo/app/modules/home/controllers/home_controller.dart';
+import 'package:todo/app/modules/home/model/todo_model.dart';
 
 class TodoWidget extends StatelessWidget {
   const TodoWidget({
     super.key,
+    required this.controller,
+    required this.todoModel,
   });
+
+  final HomeController controller;
+  final TodoModel? todoModel;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
+      padding: const EdgeInsets.all(16),
       child: Column(
         children: [
           Container(
@@ -24,10 +31,10 @@ class TodoWidget extends StatelessWidget {
               ),
               color: Colors.greenAccent,
             ),
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Text(
-              'Title for the Todo',
-              style: TextStyle(fontWeight: FontWeight.w600),
+              todoModel?.title ?? '',
+              style: const TextStyle(fontWeight: FontWeight.w600),
             ),
           ),
           Container(
@@ -42,9 +49,10 @@ class TodoWidget extends StatelessWidget {
                 bottomRight: Radius.circular(8),
               ),
             ),
-            padding: EdgeInsets.all(16),
+            padding: const EdgeInsets.all(16),
             child: Text(
-                'Description for the Todo, Description for the Todo Description for the Todo Description for the TodoDescription for the Todo '),
+              todoModel?.description ?? '',
+            ),
           )
         ],
       ),

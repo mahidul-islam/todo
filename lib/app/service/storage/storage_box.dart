@@ -13,10 +13,16 @@ class StorageBox extends GetxService {
   final GetStorage _box = GetStorage()..initStorage;
 
   // todo's
-  TodoModels get todoModels => TodoModels.fromJson(
-      jsonDecode(_box.read<String?>(StorageKeys.todoModels.name) ?? ''));
+  TodoModels? get todoModels {
+    String? data = _box.read(StorageKeys.todoModels.name) ?? '{}';
+    // print(data);
+    return TodoModels.fromJson(jsonDecode(data));
+  }
+
   void get clearTodos => _box.remove(StorageKeys.todoModels.name);
-  void setTodos({required final TodoModels todos}) {
-    _box.write(StorageKeys.todoModels.name, todos.toString());
+  void setTodos({required final TodoModels? todos}) async {
+    _box.write(StorageKeys.todoModels.name, jsonEncode(todos?.toJson()));
+    _box.save();
+    // print(_box.read(StorageKeys.todoModels.name));
   }
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo/app/modules/home/model/todo_model.dart';
 import 'package:todo/app/modules/home/model/todo_models.dart';
 import 'package:todo/app/service/storage/storage_box.dart';
+import 'package:todo/app/shared_widget/button/bar_button.dart';
 import 'package:todo/app/shared_widget/text_field/general_text_field.dart';
 import 'package:todo/app/service/modal/modal_util.dart';
 
@@ -11,12 +13,16 @@ class HomeController extends GetxController {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
-  Rx<TodoModels> todoModels = TodoModels().obs;
+  Rx<TodoModels?> todoModels = TodoModels().obs;
 
   @override
   void onInit() async {
     todoModels.value = StorageBox.to.todoModels;
     super.onInit();
+  }
+
+  void save() {
+    StorageBox.to.setTodos(todos: todoModels.value);
   }
 
   void addTask() {
@@ -43,6 +49,43 @@ class HomeController extends GetxController {
         lineCount: 5,
         padding: EdgeInsets.zero,
       ),
+      const SizedBox(
+        height: 16,
+      ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          BarButton.secondary(
+            onPressed: () {
+              Get.back(closeOverlays: true);
+            },
+            title: 'Cancel',
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          BarButton.primary(
+            onPressed: () {
+              List<TodoModel>? todos = todoModels.value?.todos?.toList();
+              todos ??= [];
+              todos.add(
+                TodoModel(
+                  title: titleController.text,
+                  description: descriptionController.text,
+                ),
+              );
+              titleController.text = '';
+              descriptionController.text = '';
+              todoModels.value = todoModels.value?.copyWith(todos: todos);
+              save();
+              // todoModels.value =
+              //     todoModels.value.copyWith(update: !todoModels.value.update);
+              Get.back(closeOverlays: true);
+            },
+            title: 'Create',
+          ),
+        ],
+      )
     ]);
   }
 }
