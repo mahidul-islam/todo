@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:todo/app/service/storage/storage_box.dart';
-import 'package:todo/app/utils/modal_util.dart';
+import 'package:todo/app/service/modal/modal_util.dart';
 
 import 'app/routes/app_pages.dart';
 

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:todo/app/modules/home/model/todo_models.dart';
+import 'package:todo/app/service/storage/storage_box.dart';
 import 'package:todo/app/shared_widget/text_field/general_text_field.dart';
-import 'package:todo/app/utils/modal_util.dart';
+import 'package:todo/app/service/modal/modal_util.dart';
 
 class HomeController extends GetxController {
   static HomeController get to => Get.find();
@@ -9,8 +11,11 @@ class HomeController extends GetxController {
   TextEditingController titleController = TextEditingController();
   TextEditingController descriptionController = TextEditingController();
 
+  Rx<TodoModels> todoModels = TodoModels().obs;
+
   @override
-  void onInit() {
+  void onInit() async {
+    todoModels.value = StorageBox.to.todoModels;
     super.onInit();
   }
 

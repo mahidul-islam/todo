@@ -1,27 +1,22 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:todo/app/modules/home/model/todo_models.dart';
 
 enum StorageKeys {
-  token,
-  cacheId,
+  todoModels,
 }
 
 class StorageBox extends GetxService {
   static StorageBox get to => Get.find();
   final GetStorage _box = GetStorage()..initStorage;
-  // Token
-  String get token => _box.read<String?>(StorageKeys.token.name) ?? '';
-  void get clearToken => _box.remove(StorageKeys.token.name);
-  void setToken({required final String token}) {
-    _box.write(StorageKeys.token.name, token);
-  }
 
-  // Cache ID
-  int? get cacheId => _box.read<int?>(StorageKeys.cacheId.name);
-  void clearCacheId() => _box.remove(StorageKeys.cacheId.name);
-  void setCacheId({required final int cacheId}) {
-    _box
-        .write(StorageKeys.cacheId.name, cacheId)
-        .then((final _) => _box.save());
+  // todo's
+  TodoModels get todoModels => TodoModels.fromJson(
+      jsonDecode(_box.read<String?>(StorageKeys.todoModels.name) ?? ''));
+  void get clearTodos => _box.remove(StorageKeys.todoModels.name);
+  void setTodos({required final TodoModels todos}) {
+    _box.write(StorageKeys.todoModels.name, todos.toString());
   }
 }
