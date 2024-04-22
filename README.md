@@ -12,8 +12,12 @@ flutter run
 
 ## Tasks
 - All functionality working
-- Added persistant storage for todos
+- Added persistent storage for todos
 - Added a sample animation for empty state.
-- Followed GetX pattern for code management.
 - Added Validation if title or description empty.
 - Added ripple effect on click action on Button.
+- Followed GetX pattern for code management.
+- Used Freezed for immutable Model.
+- Used Get Storage for persistent data.
+- Used Service system for ease of use.
+- Used Shared Common widget for greater ease of use.
