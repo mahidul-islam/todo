@@ -4,9 +4,10 @@ A TODO app for demonstration.
 
 ## Getting Started
 
-to install your pc need to have 3.19.6 version of flutter. You need to have Android emulator (or equivalent for other platform) available and from the root of the project please run
+to install your pc need to have 3.19.6 version of flutter. You need to have Android emulator (or equivalent for other platform) available and from the root of the project please run. the first command is for freezed models.
 
 ```
+dart run build_runner build --delete-conflicting-outputs
 flutter run
 ```
 
