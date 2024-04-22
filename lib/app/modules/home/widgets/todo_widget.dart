@@ -52,9 +52,11 @@ class TodoWidget extends StatelessWidget {
                   onPressed: () {
                     controller.removeTodo(todoModel);
                   },
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.delete_outline,
-                    color: Colors.red,
+                    color: (todoModel?.completed ?? false)
+                        ? Colors.red
+                        : Colors.black,
                     size: 16,
                   ),
                 )
